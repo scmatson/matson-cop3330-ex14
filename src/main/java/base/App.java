@@ -1,4 +1,8 @@
 package base;
+
+import java.text.DecimalFormat;
+import java.util.Scanner;
+
 /*
  *  UCF COP3330 Summer 2021 Assignment 1 Solution
  *  Copyright 2021 Scott Matson
@@ -37,4 +41,31 @@ Challenges
 -Also allow the user to enter the state’s full name in upper, lower, or mixed case.
  */
 public class App {
+    public static void main(String[] args) {
+        Scanner ui = new Scanner(System.in);
+        DecimalFormat df = new DecimalFormat("##0.00");
+
+        System.out.print("What is the order amount? ");
+        double amount = ui.nextInt();
+
+        ui.nextLine(); // gets rid of empty line caused by ui.nextInt()
+
+        System.out.print("What is the state? ");
+        String state = ui.nextLine();
+
+        double tax = 0.055;
+        double product = (amount * tax);
+        double tax_total = product + amount;
+
+        if(state.equals("WI"))
+        {
+            System.out.println("The total is $" + df.format(amount));
+        }
+        else
+        {
+            System.out.println("The subtotal is $" + df.format(amount) + ".");
+            System.out.println("The tax is $" + df.format(product) + ".");
+            System.out.println("The total is $" + df.format(tax_total) + ".");
+        }
+    }
 }
